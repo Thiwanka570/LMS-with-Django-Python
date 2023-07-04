@@ -1,0 +1,47 @@
+<div>
+    <div>
+      <h2>All Members</h2>
+    </div>
+    <div>
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search Book" aria-label="Search" name="search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </div>
+
+    <table class="table table-dark table-borderless">
+      <th>memberid</th>
+      <th>Name</th>
+      <th>contact</th>
+      <th>email</th>
+      <th></th>
+      <th></th>
+      {% for data in Memberlist %}
+      <tr>
+        <td>{{data.id}}</td>
+        <td>{{data.memberid}}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.contact}}</td>
+        <td>{{data.email}}</td>
+        <!-- data-bs-target="#exampleModal" -->
+        <form action="" method="POST">
+          {% csrf_token %}
+          <td><a href="{% url 'updatemembers' data.id %}">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Edit
+            </button>
+          </a></td>
+
+          <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletemodel">
+              Delete
+            </button></td>
+        </form>
+
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
